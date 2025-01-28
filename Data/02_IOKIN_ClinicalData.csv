@@ -1,0 +1,16 @@
+Patient_id,ctDNAShift,BulkTCRAvailability,PD (YES/NO),PFS,Living,OS,BestResponse,CancerType,LA/Metastastic,HPV status
+LIB-25-0001,Increase,Available,YES,55,0,283,PD,OralCavity,Met,Negative
+LIB-25-0002,Increase,Available,YES,217,0,932,SD,Oropharynx,Met,Positive
+LIB-25-0003,Increase,Available,YES,51,0,160,PD,Oropharynx,Met,Positive
+LIB-25-0004,Increase,NotAvailable,YES,254,0,358,SD,Oropharynx,LA-R,Negative
+LIB-25-0005,Increase,NotAvailable,YES,54,0,442,PD,Nasal,LA-R,Negative
+LIB-25-0007,Increase,NotAvailable,YES,78,1,1084,PD,Hypopharynx,Met,Negative
+LIB-25-0008,Increase,NotAvailable,YES,78,0,511,PD,Larynx,Met,Negative
+LIB-25-0009,Increase,Available,YES,296,0,574,PR,Larynx,Met,Negative
+LIB-25-0010,Increase,NotAvailable,YES,73,0,152,PD,OralCavity,LA-R,Negative
+LIB-25-0011,Increase,NotAvailable,YES,71,0,239,PD,OralCavity,LA-R,Negative
+LIB-25-0012,Decrease,Available,NO,945,1,945,CR,OralCavity,Met,Negative
+LIB-25-0013,Decrease,Available,YES,288,0,734,SD,Oropharynx,Met,Positive
+LIB-25-0014,Increase,NotAvailable,YES,125,0,132,PD,Oropharynx,Met,Negative
+LIB-25-0017,Decrease,Available,YES,455,1,913,PR,OralCavity,LA-R,Negative
+LIB-25-0018,Decrease,Available,YES,567,0,855,PR,Hypopharynx,Met,Negative
