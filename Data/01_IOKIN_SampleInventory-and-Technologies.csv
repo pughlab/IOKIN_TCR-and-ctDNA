@@ -1,0 +1,190 @@
+Patient_id,Timepoint,Sample type,Technology
+LIB-25-0001,Archival,Tumour,RNA-seq
+LIB-25-0002,Archival,Tumour,RNA-seq
+LIB-25-0003,Archival,Tumour,RNA-seq
+LIB-25-0004,Archival,Tumour,RNA-seq
+LIB-25-0005,Archival,Tumour,RNA-seq
+LIB-25-0007,Archival,Tumour,RNA-seq
+LIB-25-0008,Archival,Tumour,RNA-seq
+LIB-25-0009,Archival,Tumour,RNA-seq
+LIB-25-0010,Archival,Tumour,RNA-seq
+LIB-25-0011,Archival,Tumour,RNA-seq
+LIB-25-0012,Archival,Tumour,RNA-seq
+LIB-25-0013,Archival,Tumour,RNA-seq
+LIB-25-0014,Archival,Tumour,RNA-seq
+LIB-25-0017,Archival,Tumour,RNA-seq
+LIB-25-0018,Archival,Tumour,RNA-seq
+LIB-25-0001,Archival,Tumour,WES
+LIB-25-0002,Archival,Tumour,WES
+LIB-25-0003,Archival,Tumour,WES
+LIB-25-0004,Archival,Tumour,WES
+LIB-25-0005,Archival,Tumour,WES
+LIB-25-0007,Archival,Tumour,WES
+LIB-25-0008,Archival,Tumour,WES
+LIB-25-0009,Archival,Tumour,WES
+LIB-25-0010,Archival,Tumour,WES
+LIB-25-0011,Archival,Tumour,WES
+LIB-25-0012,Archival,Tumour,WES
+LIB-25-0013,Archival,Tumour,WES
+LIB-25-0014,Archival,Tumour,WES
+LIB-25-0017,Archival,Tumour,WES
+LIB-25-0018,Archival,Tumour,WES
+LIB-25-0001,Baseline,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0002,Baseline,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0003,Baseline,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0004,Baseline,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0005,Baseline,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0007,Baseline,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0008,Baseline,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0009,Baseline,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0010,Baseline,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0011,Baseline,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0012,Baseline,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0013,Baseline,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0014,Baseline,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0017,Baseline,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0018,Baseline,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0001,Day 2,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0002,Day 2,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0003,Day 2,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0004,Day 2,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0005,Day 2,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0007,Day 2,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0008,Day 2,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0009,Day 2,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0010,Day 2,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0011,Day 2,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0012,Day 2,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0013,Day 2,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0014,Day 2,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0017,Day 2,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0018,Day 2,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0002,Day 3,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0003,Day 3,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0004,Day 3,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0005,Day 3,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0007,Day 3,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0008,Day 3,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0009,Day 3,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0010,Day 3,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0011,Day 3,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0012,Day 3,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0013,Day 3,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0014,Day 3,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0017,Day 3,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0018,Day 3,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0001,Day 8,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0002,Day 8,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0003,Day 8,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0004,Day 8,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0005,Day 8,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0007,Day 8,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0008,Day 8,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0009,Day 8,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0010,Day 8,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0011,Day 8,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0012,Day 8,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0013,Day 8,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0017,Day 8,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0018,Day 8,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0001,Day 15,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0002,Day 15,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0003,Day 15,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0004,Day 15,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0005,Day 15,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0007,Day 15,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0008,Day 15,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0009,Day 15,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0010,Day 15,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0011,Day 15,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0012,Day 15,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0013,Day 15,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0014,Day 15,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0017,Day 15,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0018,Day 15,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0001,Day 22,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0002,Day 22,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0003,Day 22,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0004,Day 22,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0005,Day 22,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0007,Day 22,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0008,Day 22,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0009,Day 22,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0010,Day 22,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0011,Day 22,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0012,Day 22,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0013,Day 22,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0014,Day 22,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0017,Day 22,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0018,Day 22,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0001,Day 29,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0002,Day 29,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0003,Day 29,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0004,Day 29,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0005,Day 29,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0007,Day 29,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0008,Day 29,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0009,Day 29,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0010,Day 29,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0011,Day 29,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0012,Day 29,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0013,Day 29,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0014,Day 29,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0017,Day 29,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0018,Day 29,Plasma ctDNA,Bespoke ctDNA
+LIB-25-0001,Baseline,Buffy Coat,CapTCR-seq
+LIB-25-0001,Day 15,Buffy Coat,CapTCR-seq
+LIB-25-0001,Day 2,Buffy Coat,CapTCR-seq
+LIB-25-0001,Day 22,Buffy Coat,CapTCR-seq
+LIB-25-0001,Day 29,Buffy Coat,CapTCR-seq
+LIB-25-0001,Day 3,Buffy Coat,CapTCR-seq
+LIB-25-0001,Day 8,Buffy Coat,CapTCR-seq
+LIB-25-0002,Baseline,Buffy Coat,CapTCR-seq
+LIB-25-0002,Day 15,Buffy Coat,CapTCR-seq
+LIB-25-0002,Day 2,Buffy Coat,CapTCR-seq
+LIB-25-0002,Day 22,Buffy Coat,CapTCR-seq
+LIB-25-0002,Day 29,Buffy Coat,CapTCR-seq
+LIB-25-0002,Day 3,Buffy Coat,CapTCR-seq
+LIB-25-0002,Day 8,Buffy Coat,CapTCR-seq
+LIB-25-0003,Baseline,Buffy Coat,CapTCR-seq
+LIB-25-0003,Day 15,Buffy Coat,CapTCR-seq
+LIB-25-0003,Day 2,Buffy Coat,CapTCR-seq
+LIB-25-0003,Day 22,Buffy Coat,CapTCR-seq
+LIB-25-0003,Day 29,Buffy Coat,CapTCR-seq
+LIB-25-0003,Day 3,Buffy Coat,CapTCR-seq
+LIB-25-0003,Day 8,Buffy Coat,CapTCR-seq
+LIB-25-0009,Baseline,Buffy Coat,CapTCR-seq
+LIB-25-0009,Day 15,Buffy Coat,CapTCR-seq
+LIB-25-0009,Day 2,Buffy Coat,CapTCR-seq
+LIB-25-0009,Day 22,Buffy Coat,CapTCR-seq
+LIB-25-0009,Day 29,Buffy Coat,CapTCR-seq
+LIB-25-0009,Day 3,Buffy Coat,CapTCR-seq
+LIB-25-0009,Day 8,Buffy Coat,CapTCR-seq
+LIB-25-0012,Baseline,Buffy Coat,CapTCR-seq
+LIB-25-0012,Day 15,Buffy Coat,CapTCR-seq
+LIB-25-0012,Day 2,Buffy Coat,CapTCR-seq
+LIB-25-0012,Day 22,Buffy Coat,CapTCR-seq
+LIB-25-0012,Day 29,Buffy Coat,CapTCR-seq
+LIB-25-0012,Day 3,Buffy Coat,CapTCR-seq
+LIB-25-0012,Day 8,Buffy Coat,CapTCR-seq
+LIB-25-0013,Baseline,Buffy Coat,CapTCR-seq
+LIB-25-0013,Day 15,Buffy Coat,CapTCR-seq
+LIB-25-0013,Day 2,Buffy Coat,CapTCR-seq
+LIB-25-0013,Day 22,Buffy Coat,CapTCR-seq
+LIB-25-0013,Day 29,Buffy Coat,CapTCR-seq
+LIB-25-0013,Day 3,Buffy Coat,CapTCR-seq
+LIB-25-0013,Day 8,Buffy Coat,CapTCR-seq
+LIB-25-0017,Baseline,Buffy Coat,CapTCR-seq
+LIB-25-0017,Day 15,Buffy Coat,CapTCR-seq
+LIB-25-0017,Day 2,Buffy Coat,CapTCR-seq
+LIB-25-0017,Day 22,Buffy Coat,CapTCR-seq
+LIB-25-0017,Day 29,Buffy Coat,CapTCR-seq
+LIB-25-0017,Day 3,Buffy Coat,CapTCR-seq
+LIB-25-0017,Day 8,Buffy Coat,CapTCR-seq
+LIB-25-0018,Baseline,Buffy Coat,CapTCR-seq
+LIB-25-0018,Day 15,Buffy Coat,CapTCR-seq
+LIB-25-0018,Day 2,Buffy Coat,CapTCR-seq
+LIB-25-0018,Day 22,Buffy Coat,CapTCR-seq
+LIB-25-0018,Day 29,Buffy Coat,CapTCR-seq
+LIB-25-0018,Day 3,Buffy Coat,CapTCR-seq
+LIB-25-0018,Day 8,Buffy Coat,CapTCR-seq
