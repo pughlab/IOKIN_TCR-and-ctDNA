@@ -81,7 +81,7 @@ PatientOrder <- (ClinicalData %>%
 
 
 
-
+### Figure 2A
 ggplot(data = ctDNALongFormat %>%
                mutate(Patient_id = fct_relevel(Patient_id , PatientOrder))) +
         
