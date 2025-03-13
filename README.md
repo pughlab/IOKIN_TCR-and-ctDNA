@@ -7,13 +7,13 @@ Head and Neck Squamous Cell Carcinoma (HNSCC), Recurrent/Metastatic (R/M), Immun
 
 ### Session Info:
 R version 4.4.1 (2024-06-14) Running under: macOS Big Sur 11.7.10 <br>
-RStudio Version 2023.09.1+494
-Package tidyverse version 2.0.0
-Package mgcv version 1.9-1
-Package gratia version 0.10.0
-Package scales version 1.3.0 
-Package survminer version 0.5.0
-Package survival version 3.8-3
-Package igraph version 2.1.4
+RStudio Version 2023.09.1+494 <br>
+Package tidyverse version 2.0.0 <br>
+Package mgcv version 1.9-1 <br>
+Package gratia version 0.10.0 <br>
+Package scales version 1.3.0 <br> 
+Package survminer version 0.5.0 <br>
+Package survival version 3.8-3 <br>
+Package igraph version 2.1.4 <br>
 Package graphlayouts version 1.2.2
 
