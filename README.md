@@ -4,4 +4,16 @@ PD-1:PD-L1 axis targeting immune checkpoint blockade (ICB) significantly improve
 
 ### Key words:
 Head and Neck Squamous Cell Carcinoma (HNSCC), Recurrent/Metastatic (R/M), Immune Checkpoint Blockade (ICB), Circulating Tumor DNA (ctDNA), T-Cell Receptor (TCR), Peripheral Blood
-_____________________________________________________________________________________________________
+
+### Session Info:
+R version 4.4.1 (2024-06-14) Running under: macOS Big Sur 11.7.10
+RStudio Version 2023.09.1+494
+Package tidyverse version 2.0.0
+Package mgcv version 1.9-1
+Package gratia version 0.10.0
+Package scales version 1.3.0 
+Package survminer version 0.5.0
+Package survival version 3.8-3
+Package igraph version 2.1.4
+Package graphlayouts version 1.2.2
+
