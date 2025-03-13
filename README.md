@@ -7,7 +7,7 @@ Head and Neck Squamous Cell Carcinoma (HNSCC), Recurrent/Metastatic (R/M), Immun
 ***
 ### Documents in the Data directory:
 #### 01_IOKIN_SampleInventory-and-Technologies.csv
-Input document to generate Figure 1B Tile plot. <br>
+Input data to generate figure 1B Tile plot. <br>
 
 #### 02_IOKIN_ClinicalData.csv
 Clinical data for IO-KIN patients that were used in: <br>
@@ -22,6 +22,10 @@ Main figures 4A-L, and 5A. <br>
 Supplementary figures 4A-T, 5, and 8A-B. <br>
 
 #### 04_IOKIN_ctDNALevels.csv
+ctDNA levels provided by Signatera<sup>TM</sup>, Natera.
+ctDNA levels were plotted in: <br>
+Main figure 2A. <br>
+
 #### 05_IOKIN_BuffyCoat_DiversityIndices_DownSampled.csv
 #### 06_IOKIN_BuffyCoat_ClonalityIndices_DownSampled.csv
 ***
