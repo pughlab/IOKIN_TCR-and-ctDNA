@@ -125,5 +125,58 @@ network <- graph_from_data_frame(d = EDGES ,
 
 #Removing multi-edges
 network <- simplify(network)
+
+### ---------------------------------------------------------------------------------------------------------
+### Network trimming via clique identification: -------------------------------------------------------------
+### After constructing the networks, filtrations are required to withdraw loosely connected nodes 
+### to increase the precision of downstream specificity annotations.
+### A clique is a complete subgraph within a larger graph, 
+### where every node is directly connected to every other node in that subset. 
+### All nodes that do not form a clique with size four are excluded from further analysis.
+
+MaxClique_collection <- max_cliques(network,
+                                    min = 4,
+                                    max = NULL)
+
+
+network <- induced_subgraph(network,
+                            unlist(MaxClique_collection))
+
+### ---------------------------------------------------------------------------------------------------------
+### Community detection for specificity annotation: ---------------------------------------------------------
                   
-                  
+communities_leiden <- igraph::cluster_leiden(network,
+                                             objective_function = "CPM",
+                                             resolution_parameter = 0.2 ,
+                                             n_iterations = 10000,
+                                             beta = 0.01)
+
+
+network <- set_vertex_attr(network,
+                           name = "LeidenCommunity",
+                           value = communities_leiden$membership)   
+
+### ---------------------------------------------------------------------------------------------------------
+### Fine tuning the communities: ----------------------------------------------------------------------------
+
+                        largest_cliques_list <- c()
+
+
+for (community_id in unique(communities_leiden$membership)) {
+        subgraph <- igraph::subgraph(
+                network ,
+                which(V(network)$LeidenCommunity == community_id))
+
+        if (clique_num (subgraph) > 4) {
+
+                largest_cliques_list <- append(largest_cliques_list ,
+                                               unique (names(unlist(largest_cliques(subgraph)))) )
+        }
+        rm (subgraph)
+}
+
+
+trimmedNetwork <- delete_vertices(network,
+                                  setdiff(V(network)$name , largest_cliques_list))
+
+
