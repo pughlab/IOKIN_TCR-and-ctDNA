@@ -2,8 +2,12 @@ library(tidyverse)
 library(igraph)
 library(graphlayouts)
 
+data_path <- "https://raw.githubusercontent.com/pughlab/IOKIN_TCR-and-ctDNA/refs/heads/main/Data"
 
+### ---------------------------------------------------------------------------------------------------------
 ### Defining the colors for external nodes for visualization purpose:
+### ---------------------------------------------------------------------------------------------------------
+
 color_shape_pallette <- data.frame(
         Source = c(
                 "HNSCC" , "HomoSapiens" ,
@@ -30,11 +34,11 @@ color_shape_pallette <- data.frame(
                 "#6BB8B3" , #"HTLV"
                 "#A0001D"   #"IOKINBlood"
         ) )
+
+### ---------------------------------------------------------------------------------------------------------
+### Clinical data:
 ### ---------------------------------------------------------------------------------------------------------
 
-data_path <- "https://raw.githubusercontent.com/pughlab/IOKIN_TCR-and-ctDNA/refs/heads/main/Data"
-
-### Clinical data:
 ClinicalData_fname <- "02_IOKIN_ClinicalData.csv"
 ClinicalData <- read_csv(file.path(data_path , ClinicalData_fname)) %>%
         dplyr::select(Patient_id , BestResponse , CancerType , 
@@ -42,7 +46,10 @@ ClinicalData <- read_csv(file.path(data_path , ClinicalData_fname)) %>%
         rename (`LocalAdvanced-orMetastatic` = `LA/Metastastic`,
                 HPVStatus = `HPV status`)
 
+### ---------------------------------------------------------------------------------------------------------
 ### Reading the GLIPHII output data for network generation: 
+### ---------------------------------------------------------------------------------------------------------
+
 GliphOutput_fname <- "07_IOKIN_BuffyCoat_GLIPHIIOutput.csv"
 gliph_data <- readr::read_csv(file.path(data_path , GliphOutput_fname ))%>%
         select(
@@ -76,7 +83,9 @@ gliph_data <- readr::read_csv(file.path(data_path , GliphOutput_fname ))%>%
         left_join (color_shape_pallette , by = "Source")
                   
 ### ---------------------------------------------------------------------------------------------------------
-### Raw network generation: ---------------------------------------------------------------------------------
+### Raw network generation: 
+### ---------------------------------------------------------------------------------------------------------
+
 # Edges are defined as GLIPH-II identified global and local specificity signatures (denoted as ‘type’ in GLIPHII outputs):
 
 specificity_signatures <- unique(gliph_data$type)
@@ -127,7 +136,9 @@ network <- graph_from_data_frame(d = EDGES ,
 network <- simplify(network)
 
 ### ---------------------------------------------------------------------------------------------------------
-### Network trimming via clique identification: -------------------------------------------------------------
+### Network trimming via clique identification: 
+### ---------------------------------------------------------------------------------------------------------
+
 ### After constructing the networks, filtrations are required to withdraw loosely connected nodes 
 ### to increase the precision of downstream specificity annotations.
 ### A clique is a complete subgraph within a larger graph, 
@@ -143,7 +154,8 @@ network <- induced_subgraph(network,
                             unlist(MaxClique_collection))
 
 ### ---------------------------------------------------------------------------------------------------------
-### Community detection for specificity annotation: ---------------------------------------------------------
+### Community detection for specificity annotation: 
+### ---------------------------------------------------------------------------------------------------------
                   
 communities_leiden <- igraph::cluster_leiden(network,
                                              objective_function = "CPM",
@@ -157,9 +169,10 @@ network <- set_vertex_attr(network,
                            value = communities_leiden$membership)   
 
 ### ---------------------------------------------------------------------------------------------------------
-### Fine tuning the communities: ----------------------------------------------------------------------------
+### Fine tuning the communities: 
+### ---------------------------------------------------------------------------------------------------------
 
-                        largest_cliques_list <- c()
+largest_cliques_list <- c()
 
 
 for (community_id in unique(communities_leiden$membership)) {
@@ -181,7 +194,8 @@ trimmedNetwork <- delete_vertices(network,
 
 
 ### ---------------------------------------------------------------------------------------------------------
-### Storing community specificities and their details in a dataframe for downstream analysis: ---------------
+### Storing community specificities and their details in a dataframe for downstream analysis:
+### ---------------------------------------------------------------------------------------------------------
 
 ### Defining the variable we'd like to extract:
 GLIPHII_Community_stats <- as.data.frame(table(V(trimmedNetwork)$LeidenCommunity)) %>%
@@ -271,4 +285,129 @@ for (n in c(1:nrow(GLIPHII_Community_stats))) {
 
         rm (community_id , Component_id)
 
+}
+
+
+
+### Specificity annotation maps and their colors:                        
+Annotation_Ref <- tibble(
+        ExternalSpecificity = c("IOKIN_intrinsic" ,
+
+                                "HNSCC" ,
+                                "HomoSapiens" ,
+
+                                "CEF" ,  "CMV" ,
+                                "EBV" ,  "HCV" ,
+                                "HPV" ,  "MCPyV" ,
+                                "Influenza" , "DENV" ,
+                                "HTLV-1" , "YFV" ,
+
+                                "S-pneumoniae" , "M.tuberculosis" ) ,
+
+        Abstract_Annotation = c("IOKIN_intrinsic" ,
+
+                                "HNSCC" ,
+                                "Human tumour and auto-antigens" ,
+
+                                "Viral" ,  "Viral" ,
+                                "Viral" ,  "Viral" ,
+                                "Viral" ,  "Viral" ,
+                                "Viral" ,  "Viral" ,
+                                "Viral" ,  "Viral" ,
+
+                                "Bacterial" , "Bacterial" ) )
+
+
+Color_Ref <- tibble(
+        Abstract_Annotation = c("IOKIN_intrinsic" ,
+                                "HNSCC" ,
+                                "Human tumour and auto-antigens" ,
+                                "Viral" ,
+                                "Bacterial" ,
+                                "Cross-species") ,
+        Color = c(  "#000000" ,
+                    "#CDEDFA" ,
+                    "#FF9F01" ,
+                    "#AC261B" ,
+                    "#BAC70D" ,
+                    "#FFDF01"))
+                        
+### ---------------------------------------------------------------------------------------------------------
+### Functions for Annotating Detailed and Abstract Annotations:
+### ---------------------------------------------------------------------------------------------------------
+
+# Function to extract Human genes
+getGenes <- function(string) {
+        fullStrings <- grep("HomoSapiens" ,
+                            unlist (strsplit(string , ",")),
+                            value = TRUE)
+        genes <- paste (unique(sapply(
+                strsplit (fullStrings , "__"),
+                function(x) x[[3]])),
+                collapse = ",")
+
+        return(genes)
+}
+
+
+
+
+# Function for Abstract Annotation:
+AbstractAnnotate <- function(string) {
+
+        if (string %in% c("IOKIN_intrinsic" )) {
+                annotation <- Annotation_Ref$Abstract_Annotation [Annotation_Ref$ExternalSpecificity == string]
+
+        }
+        else {
+
+                if (length(unlist (str_split(string , ","))) == 1) {
+                        annotation <- Annotation_Ref$Abstract_Annotation [Annotation_Ref$ExternalSpecificity == string]
+                }
+
+                else if (length(unlist (str_split(string , ","))) == 2 &
+                         grepl("HNSCC" , string) ) {
+
+                        annotation <- Annotation_Ref$Abstract_Annotation [Annotation_Ref$ExternalSpecificity == grep ("HNSCC" ,
+                                                                                                                      unlist(str_split(string , ",")) ,
+                                                                                                                      value = TRUE ,
+                                                                                                                      invert = TRUE)]
+                }
+
+                else {
+                        annotation <- "Cross-species"
+                }
+
+        }
+
+
+
+        return(annotation)
+}
+
+
+
+# Function for Detailed Annotation:
+DetailAnnotate <- function(string) {
+
+
+        if (string %in% c("IOKIN_intrinsic" )) {
+                annotation <- string
+
+        }
+        else {
+                if (length(unlist (str_split(string , ","))) == 1) {
+                        annotation <- string
+                }
+                else {
+                        annotation <- paste( grep( "HNSCC",
+                                                   unlist (str_split(string , ",")) ,
+                                                   value = TRUE ,
+                                                   invert = TRUE) , collapse = ",")
+
+                }
+        }
+
+
+        return(annotation)
 }
