@@ -6,7 +6,7 @@ PD-1:PD-L1 axis targeting immune checkpoint blockade (ICB) significantly improve
 Head and Neck Squamous Cell Carcinoma (HNSCC), Recurrent/Metastatic (R/M), Immune Checkpoint Blockade (ICB), Circulating Tumor DNA (ctDNA), T-Cell Receptor (TCR), Peripheral Blood
 
 ### Documents in the data directory:
-##### 01_IOKIN_SampleInventory-and-Technologies.csv <br>
+##### 01_IOKIN_SampleInventory-and-Technologies.csv
 Input document to generate Figure 1B Tile plot. <br>
 
 02_IOKIN_ClinicalData.csv <br>
