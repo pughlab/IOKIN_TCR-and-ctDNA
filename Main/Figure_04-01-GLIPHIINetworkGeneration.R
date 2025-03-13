@@ -287,7 +287,9 @@ for (n in c(1:nrow(GLIPHII_Community_stats))) {
 
 }
 
-
+### ---------------------------------------------------------------------------------------------------------
+### Defining colors and abstract annotations:
+### ---------------------------------------------------------------------------------------------------------
 
 ### Specificity annotation maps and their colors:                        
 Annotation_Ref <- tibble(
@@ -333,7 +335,7 @@ Color_Ref <- tibble(
                     "#FFDF01"))
                         
 ### ---------------------------------------------------------------------------------------------------------
-### Functions for Annotating Detailed and Abstract Annotations:
+### Functions for Annotating Detailed and Abstract Specificities:
 ### ---------------------------------------------------------------------------------------------------------
 
 # Function to extract Human genes
@@ -411,3 +413,90 @@ DetailAnnotate <- function(string) {
 
         return(annotation)
 }
+
+### ---------------------------------------------------------------------------------------------------------
+### Adding Abstract and detailed annotation data to the dataframe of community specificities:
+### ---------------------------------------------------------------------------------------------------------
+
+GLIPHII_Community_stats <- GLIPHII_Community_stats %>%
+        rowwise() %>%
+        mutate(Abstract_Annotation = AbstractAnnotate (Community_specificity) ,
+               Detailed_Annotation = DetailAnnotate (Community_specificity)) %>%
+        mutate(Detailed_Annotation = str_replace(Detailed_Annotation , "HomoSapiens" , getGenes (KnownExternalTCRs))) %>%
+        left_join(Color_Ref ,
+                  by = "Abstract_Annotation")
+
+### ---------------------------------------------------------------------------------------------------------
+### Condensing the nodes participating in each community into super-nodes:
+### ---------------------------------------------------------------------------------------------------------
+
+GLIPHII_Community_stats$Mock_Community_id <- 1:nrow(GLIPHII_Community_stats)
+
+trimmedNetwork <- set_vertex_attr(trimmedNetwork,
+                           name = "Mock_Community_id",
+                           value = GLIPHII_Community_stats$Mock_Community_id [match(V(trimmedNetwork)$LeidenCommunity ,
+                                                                                    GLIPHII_Community_stats$Community_id) ])
+
+Abstract_Network <- igraph::contract(
+        graph = trimmedNetwork ,
+        mapping = V(trimmedNetwork)$Mock_Community_id)
+
+
+Abstract_Network <- set_vertex_attr(Abstract_Network,
+                                    name = "Community_size",
+                                    value = GLIPHII_Community_stats$Community_size)
+
+Abstract_Network <- set_vertex_attr(Abstract_Network,
+                                    name = "Component_id",
+                                    value = GLIPHII_Community_stats$Component_id)
+
+Abstract_Network <- set_vertex_attr(Abstract_Network,
+                                    name = "Community_id",
+                                    value = GLIPHII_Community_stats$Community_id)
+
+
+Abstract_Network <- set_vertex_attr(Abstract_Network,
+                                    name = "Community_specificity",
+                                    value = GLIPHII_Community_stats$Community_specificity)
+
+Abstract_Network <- set_vertex_attr(Abstract_Network,
+                                    name = "Detailed_Annotation",
+                                    value = GLIPHII_Community_stats$Detailed_Annotation)
+
+Abstract_Network <- set_vertex_attr(Abstract_Network,
+                                    name = "Abstract_Annotation",
+                                    value = GLIPHII_Community_stats$Abstract_Annotation)
+
+Abstract_Network <- set_vertex_attr(Abstract_Network,
+                                    name = "Color",
+                                    value = GLIPHII_Community_stats$Color)
+
+Abstract_Network <- set_vertex_attr(Abstract_Network,
+                                    name = "HPVStatus",
+                                    value = GLIPHII_Community_stats$HPVStatus_Range)
+
+Abstract_Network <- set_vertex_attr(Abstract_Network,
+                                    name = "CancerType",
+                                    value = GLIPHII_Community_stats$CancerType_Range)
+
+Abstract_Network <- set_vertex_attr(Abstract_Network,
+                                    name = "Number_of_Patients",
+                                    value = GLIPHII_Community_stats$Number_of_Patients)
+
+Abstract_Network <- set_vertex_attr(Abstract_Network,
+                                    name = "BestResponse",
+                                    value = GLIPHII_Community_stats$BestResponse_Range)
+
+
+Abstract_Network <- set_vertex_attr(Abstract_Network,
+                                    name = "Patient_id",
+                                    value = GLIPHII_Community_stats$Patient_id)
+
+
+
+Abstract_Network <- simplify(Abstract_Network)
+
+
+### ---------------------------------------------------------------------------------------------------------
+### Super-node network visualization:
+### ---------------------------------------------------------------------------------------------------------
