@@ -45,7 +45,7 @@ Package scales version 1.3.0 <br>
 Package survminer version 0.5.0 <br>
 Package survival version 3.8-3 <br>
 Package igraph version 2.1.4 <br>
-Package graphlayouts version 1.2.2
-Package ggseqlogo version 0.2
-Package ggh4x version 0.3.0
+Package graphlayouts version 1.2.2 <br>
+Package ggseqlogo version 0.2 <br>
+Package ggh4x version 0.3.0 <br>
 Package ggdist version 3.3.2.9000
