@@ -5,7 +5,7 @@ PD-1:PD-L1 axis targeting immune checkpoint blockade (ICB) significantly improve
 ### Key words:
 Head and Neck Squamous Cell Carcinoma (HNSCC), Recurrent/Metastatic (R/M), Immune Checkpoint Blockade (ICB), Circulating Tumor DNA (ctDNA), T-Cell Receptor (TCR), Peripheral Blood
 ***
-### Documents in the data directory:
+### Documents in the Data directory:
 #### 01_IOKIN_SampleInventory-and-Technologies.csv
 Input document to generate Figure 1B Tile plot. <br>
 
@@ -15,6 +15,12 @@ Main figures 1B, 2A-C, 3A-C, and 5. <br>
 Supplementary figures 2A-B, 5, and 8B. <br>
 
 #### 03_IOKIN_BuffyCoat_TRB-CDR3.csv
+Buffy coat CapTCR-seq processed data for 8 IO-KIN patients that were serially collected at baseline (same or prior day to first ICB dose administration), days 2, 3, 8, 15, 22, and 29 post-infusion; 
+TRB-CDR3 sequences were assembled using MiXCR 3.0.12. <br>
+TRB-CDR3 sequences were used for calculating the diversity indices and also for generating: <br>
+Main figures 4A-L, and 5A. <br>
+Supplementary figures 4A-T, 5, and 8A-B. <br>
+
 #### 04_IOKIN_ctDNALevels.csv
 #### 05_IOKIN_BuffyCoat_DiversityIndices_DownSampled.csv
 #### 06_IOKIN_BuffyCoat_ClonalityIndices_DownSampled.csv
