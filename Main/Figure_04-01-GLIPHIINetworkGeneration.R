@@ -440,8 +440,15 @@ trimmedNetwork <- set_vertex_attr(trimmedNetwork,
 Abstract_Network <- igraph::contract(
         graph = trimmedNetwork ,
         mapping = V(trimmedNetwork)$Mock_Community_id)
+        ###The mapping argument passed to contract function is a numeric vector that specifies the mapping. 
+        ### We pass the community ids as the mapping argument. 
+        ### However, because we've trimmed some communities, some community ids are missing.
+        ### For those withdrawn communities, empty super nodes are generated, which are not favorable. 
+        ### Therefore, we need to provide mock community ids to prevent empty supernode generation. 
+        ### We add a new column to GLIPHII_Community_stats as Mock_Community_id to do this.
 
-
+                               
+### Adding attributes to each super-node from GLIPHII_Community_stats dataframe:
 Abstract_Network <- set_vertex_attr(Abstract_Network,
                                     name = "Community_size",
                                     value = GLIPHII_Community_stats$Community_size)
@@ -500,3 +507,111 @@ Abstract_Network <- simplify(Abstract_Network)
 ### ---------------------------------------------------------------------------------------------------------
 ### Super-node network visualization:
 ### ---------------------------------------------------------------------------------------------------------
+
+### Defining the coordination of each super-node using layouts readily available in both igraph and 
+### graphlayouts packages. This step is up to the user and based on user's visualization preferences,
+### Any other packages or algorithms can be utilized:
+InitialLayout <- layout_with_graphopt(Abstract_Network)
+
+
+### For extra, minimal manual tweaking, we can use tkid:
+tkid <- tkplot(
+        Abstract_Network,
+        vertex.size =  V (Abstract_Network)$Community_size**0.85 ,
+        vertex.color = V (Abstract_Network)$Color ,
+        vertex.label = NA ,
+        vertex.label.color = "#000000" ,
+        vertex.label.cex = 0.5 ,
+        vertex.label.degree = 75 ,
+        vertex.label.family = "Helvetica" ,
+        vertex.shape = "circle" ,
+        edge.width = 0.5 ,
+        edge.color = "#000000" ,
+        rescale = FALSE ,
+        ###To get all the available layouts: grep("^layout_", ls("package:igraph"), value=TRUE)[-1]
+        layout = norm_coords(InitialLayout ,
+                ymin=-0.9,
+                ymax=0.9,
+                xmin=-0.9,
+                xmax=0.9))
+
+
+### Get the modified layout:
+layout <- tk_coords(tkid)
+
+
+### We can save the layout for later use or add the X and Y coordinations 
+### as node attributes to the super-node network:
+
+Abstract_Network <- set_vertex_attr(Abstract_Network,
+                                    name = "LayoutX",
+                                    value = layout [,1])
+
+Abstract_Network <- set_vertex_attr(Abstract_Network,
+                                    name = "LayoutY",
+                                    value = layout [,2])
+
+
+### saveRDS(Abstract_Network,"IOKIN_BuffyCoat_GLIPHIINetwork_CliqueTrimmed_GLIPHIISuperNodeNetwork.rds" )
+
+                               
+### ---------------------------------------------------------------------------------------------------------
+### Visualizing the specificity community graphs and TRB CDR3 Sequences' LOGOPlots:
+### ---------------------------------------------------------------------------------------------------------
+### Example:
+ID <- Community ID of interest
+
+nt <- igraph::subgraph(
+        network ,
+        which(V(network)$LeidenCommunity == ID ))
+
+
+
+### Zoomed-in community nodes:
+plot.igraph(
+        nt,
+        vertex.size = ifelse(V (nt)$Source == "IOKINBlood"  , 23 , 15) ,
+        vertex.color = ifelse(V (nt)$Source == "IOKINBlood"  , "#000000" , V (nt)$colors ) ,
+        vertex.frame.color = "#000000" ,
+        #vertex.frame.width = ifelse(V (nt)$Source == "INSPIRE" , 16 , 8) ,
+        vertex.frame.width = 0.1 ,
+        vertex.shape = "circle",
+
+        vertex.label = ifelse(V (nt)$Source == "IOKINBlood"  ,
+                              V(nt)$Patient_id ,
+                              ifelse(V(nt)$Source == "HNSCC" ,
+                                     NA ,
+                                     ifelse(V(nt)$Source == "HomoSapiens" ,
+                                            sub(".+__(.+)$", "\\1", V(nt)$name) ,
+                                            V(nt)$Source))),
+        vertex.label.family = "Helvetica" ,
+        vertex.label.color = "#000000" ,
+        vertex.label.cex = 0.4 ,
+        vertex.label.dist = ifelse(V (nt)$Source == "IOKINBlood" ,
+                                   11 , 4),
+        vertex.label.degree = 0 ,
+
+        edge.width = 0.25 ,
+        edge.color = "#BABABA" ,
+        rescale = FALSE ,
+        ###To get all the available layouts: grep("^layout_", ls("package:igraph"), value=TRUE)[-1]
+        layout = norm_coords(layout_with_graphopt(nt),
+                             ymin=-0.98, ymax=0.98,
+                             xmin=-0.98, xmax=0.98) )
+
+
+
+### LOGOSeq:
+
+ggplot() +
+        geom_logo( V(nt)$TcRb ,
+                   method = 'prob' ,
+                   seq_type='aa' ,
+                   font = "akrobat_regular" ,
+                   col_scheme = make_col_scheme(chars = LETTERS,
+                                                cols = rep ("#000000" , length(LETTERS))) ) +
+        theme_minimal() +
+        theme(
+                panel.grid = element_blank() ,
+                axis.text  = element_blank() ,
+                axis.title = element_blank() )
