@@ -27,7 +27,13 @@ ctDNA levels were plotted in: <br>
 Main figure 2A. <br>
 
 #### 05_IOKIN_BuffyCoat_DiversityIndices_DownSampled.csv
+Diversity indices (including Richness, Shannon diversity, and higher-order indeices) representing the clonal structure of the buffy coat TCR repertoires.
+Diversity indices were used for generating: <br>
+Main figures 3A-C. <br>
+
 #### 06_IOKIN_BuffyCoat_ClonalityIndices_DownSampled.csv
+Shannon and Simpson clonality indices of the buffy coat TCR repertoires.
+These indices were not reported in the paper. <br>
 ***
 ### Session Info:
 R version 4.4.1 (2024-06-14) Running under: macOS Big Sur 11.7.10 <br>
