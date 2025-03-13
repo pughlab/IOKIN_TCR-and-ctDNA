@@ -180,3 +180,95 @@ trimmedNetwork <- delete_vertices(network,
                                   setdiff(V(network)$name , largest_cliques_list))
 
 
+### ---------------------------------------------------------------------------------------------------------
+### Storing community specificities and their details in a dataframe for downstream analysis: ---------------
+
+### Defining the variable we'd like to extract:
+GLIPHII_Community_stats <- as.data.frame(table(V(trimmedNetwork)$LeidenCommunity)) %>%
+        set_names(c("Community_id", "Community_size")) %>%
+        mutate(Component_id = NA , 
+               Component_size = NA ,
+               PatientDerived_Nodes = NA , 
+               NumberOf_PatientDerived_Nodes = NA , 
+               Number_of_Patients = NA , 
+               Patient_id = NA , 
+               CancerType_Range = NA , 
+               BestResponse_Range = NA , 
+               HPVStatus_Range = NA , 
+               Community_specificity = NA ,
+               KnownExternalTCRs = NA)
+
+
+
+### Looping through the communities to extract the features:
+for (n in c(1:nrow(GLIPHII_Community_stats))) {
+
+        community_id <- GLIPHII_Community_stats$Community_id [n]
+
+        Component_id <- unique(components(trimmedNetwork)$membership [V(trimmedNetwork)$name [V(trimmedNetwork)$LeidenCommunity == community_id]])
+
+        GLIPHII_Community_stats$Component_id [n] <- Component_id
+        GLIPHII_Community_stats$Component_size [n] <- components(trimmedNetwork)$csize [Component_id]
+        #------------------------------------------------------------------------------------------------------------------------
+        GLIPHII_Community_stats$PatientDerived_Nodes [n] <- paste(
+                sort (
+                        unique(V(trimmedNetwork)$name [V(trimmedNetwork)$LeidenCommunity == community_id &
+                                                        V(trimmedNetwork)$Source == "IOKINBlood"])) ,
+                collapse = ",")
+
+        GLIPHII_Community_stats$NumberOf_PatientDerived_Nodes [n] <- length(unique(V(trimmedNetwork)$name [V(trimmedNetwork)$LeidenCommunity == community_id &
+                                                                                                            V(trimmedNetwork)$Source == "IOKINBlood"]))
+
+        GLIPHII_Community_stats$Number_of_Patients [n] <- length(unique(V(trimmedNetwork)$Patient_id [V(trimmedNetwork)$LeidenCommunity == community_id &
+                                                                                                       V(trimmedNetwork)$Source == "IOKINBlood"]))
+
+        GLIPHII_Community_stats$Patient_id [n] <- paste(
+                sort (
+                        unique(V(trimmedNetwork)$Patient_id [V(trimmedNetwork)$LeidenCommunity == community_id &
+                                                              V(trimmedNetwork)$Source == "IOKINBlood"])) ,
+                collapse = ",")
+        #------------------------------------------------------------------------------------------------------------------------
+        GLIPHII_Community_stats$CancerType_Range [n] <- paste(
+                sort (
+                        unique(V(trimmedNetwork)$CancerType [V(trimmedNetwork)$LeidenCommunity == community_id &
+                                                             V(trimmedNetwork)$Source == "IOKINBlood"])) ,
+                collapse = ",")
+
+        GLIPHII_Community_stats$BestResponse_Range [n] <- paste(
+                sort (
+                        unique(V(trimmedNetwork)$BestResponse [V(trimmedNetwork)$LeidenCommunity == community_id &
+                                                           V(trimmedNetwork)$Source == "IOKINBlood"])) ,
+                collapse = ",")
+
+        
+        GLIPHII_Community_stats$HPVStatus_Range [n] <- paste(
+                sort (
+                        unique(V(trimmedNetwork)$HPVStatus [V(trimmedNetwork)$LeidenCommunity == community_id &
+                                                                 V(trimmedNetwork)$Source == "IOKINBlood"])) ,
+                collapse = ",")
+
+        #------------------------------------------------------------------------------------------------------------------------
+        GLIPHII_Community_stats$Community_specificity [n] <- ifelse(sum (!grepl("IOKINBlood" ,
+                                                                                unique(V(trimmedNetwork)$Source [V(trimmedNetwork)$LeidenCommunity == community_id]))) > 0 ,
+                                                                    paste(
+                                                                            sort (
+                                                                                    grep("IOKINBlood" ,
+                                                                                         unique(V(trimmedNetwork)$Source [V(trimmedNetwork)$LeidenCommunity == community_id]) ,
+                                                                                         value = TRUE ,
+                                                                                         invert = TRUE)) ,
+
+                                                                            collapse = ",") ,
+                                                                    "IOKIN_intrinsic")
+
+
+        GLIPHII_Community_stats$KnownExternalTCRs [n] <- paste(
+                sort (
+                        unique(V(trimmedNetwork)$name [V(trimmedNetwork)$LeidenCommunity == community_id &
+                                                        V(trimmedNetwork)$Source != "IOKINBlood" & V(trimmedNetwork)$Source != "HNSCC"])) ,
+                collapse = ",")
+
+
+
+        rm (community_id , Component_id)
+
+}
