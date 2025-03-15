@@ -321,12 +321,10 @@ Abstract_Network <- simplify(Abstract_Network)
 
 
 ### ---------------------------------------------------------------------------------------------------------
-### Super-node network visualization:
+### Extracting the layout for visualization of the super-node network from pre-HLA convergence super node network 
+### for consistency of node coordinates to enable pre , post HLA convergence filtration comparison :
 ### ---------------------------------------------------------------------------------------------------------
 
-### ---------------------------------------------------------------------------------------------------------
-### Super-node network visualization:
-### ---------------------------------------------------------------------------------------------------------
 
 OldAbstract_Network <- read_rds(file.path(data_path , "11_IOKIN_GLIPHIISuperNodes_PreHLAConvergence.rds"))
 
