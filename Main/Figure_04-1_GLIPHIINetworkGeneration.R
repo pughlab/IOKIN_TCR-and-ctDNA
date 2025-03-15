@@ -192,6 +192,8 @@ for (community_id in unique(communities_leiden$membership)) {
 trimmedNetwork <- delete_vertices(network,
                                   setdiff(V(network)$name , largest_cliques_list))
 
+### Saving the network:                        
+saveRDS(trimmedNetwork, "09_IOKIN_GLIPHIINetwork_PreHLAConvergence.rds" )
 
 ### ---------------------------------------------------------------------------------------------------------
 ### Storing community specificities and their details in a dataframe for downstream analysis:
@@ -425,6 +427,11 @@ GLIPHII_Community_stats <- GLIPHII_Community_stats %>%
         mutate(Detailed_Annotation = str_replace(Detailed_Annotation , "HomoSapiens" , getGenes (KnownExternalTCRs))) %>%
         left_join(Color_Ref ,
                   by = "Abstract_Annotation")
+
+                               
+### Saving the dataframe:
+write_csv(GLIPHII_Community_stats , "10_IOKIN_GLIPHIICommunityFeatures_PreHLAConvergence.csv" )
+                               
 
 ### ---------------------------------------------------------------------------------------------------------
 ### Condensing the nodes participating in each community into super-nodes:
