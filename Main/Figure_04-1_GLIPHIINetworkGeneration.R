@@ -2,6 +2,29 @@ library(tidyverse)
 library(igraph)
 library(graphlayouts)
 
+### NOTE: This script contains the graph-based GLIPHII analysis pipeline that generates three outputs:
+
+### A) 09_IOKIN_GLIPHIINetwork_PreHLAConvergence.rds
+###        An igraph network representing TRB-CDR3 sequences (nodes) 
+###        connected by GLIPH-II identified global or local specificity 
+###        signatures (edges, indicated by the 'type' field in the GLIPH-II output). 
+###        This network is the result of graph-based filtering, including criteria 
+###        such as community size and node connectivity determined by clique formation. 
+###        HLA convergence criteria have not been applied.
+
+### B) 10_IOKIN_GLIPHIICommunityFeatures_PreHLAConvergence.csv
+###        A dataframe summarizing GLIPHII specificity community features.
+
+### C) 11_IOKIN_GLIPHIISuperNodes_PreHLAConvergence.rds
+###        This network is a simplified version of network A, designed for 
+###        improved visualization and interpretability.  
+###        Individual TRB-CDR3 nodes from A that belong to the same GLIPHII-defined 
+###        specificity community are collapsed into a single supernode.
+###        Therefore, each supernode represents a unique specificity community, rather than an individual TRB-CDR3 sequence.  
+###        Due to the large size of the original network A, this supernode representation 
+###        provides a more manageable and visually accessible overview of the overall landscape of specificity communities.
+
+
 data_path <- "https://raw.githubusercontent.com/pughlab/IOKIN_TCR-and-ctDNA/refs/heads/main/Data"
 
 ### ---------------------------------------------------------------------------------------------------------
@@ -431,7 +454,53 @@ GLIPHII_Community_stats <- GLIPHII_Community_stats %>%
                                
 ### Saving the dataframe:
 write_csv(GLIPHII_Community_stats , "10_IOKIN_GLIPHIICommunityFeatures_PreHLAConvergence.csv" )
+
+
+### ---------------------------------------------------------------------------------------------------------
+### Loop through communities and check for HLA convergence:
+### ---------------------------------------------------------------------------------------------------------
+
+HLA_data <- read_csv(file.path(data_path , "08_IOKIN_HLAGenotyping.csv"))
+
+AbstractAnnotationOfInterest <- "" # any of c("Bacterial" , "Cross-species" , "HNSCC" , 
+                                   #            "Human tumour and auto-antigens" , 
+                                   #            "IOKIN_intrinsic" , "Viral")
                                
+CommunityCollection <- (GLIPHII_Community_stats %>%
+                                filter(Abstract_Annotation == AbstractAnnotationOfInterest ) %>%
+                                arrange(desc(Community_size)))$Community_id
+
+for (i in CommunityCollection ) {
+        
+        print(i)
+        
+        nt <- igraph::subgraph(
+                trimmedNetwork ,
+                which(V(trimmedNetwork)$LeidenCommunity ==  i ))
+        print(cat(V(nt)$name [order(V(nt)$Source)], sep = "\n"))
+        print(sort(unique (V(nt)$Patient_id [V(nt)$Source == "IOKINBlood"])) )
+        
+        # print(HLA_data %>%
+        #               arrange(Patient_id) %>%
+        #               filter(Patient_id %in% c(sort ( unique (V(nt)$Patient_id [V(nt)$Source == "IOKINBlood"]))))%>%
+        #               filter( grepl("HLA-A|HLA-B|HLA-C" , Locus1) | grepl("HLA-A|HLA-B|HLA-C" , Locus2)))
+        
+        
+        # print(HLA_data %>%
+        #               arrange(Patient_id) %>%
+        #               filter(Patient_id %in% c(sort ( unique (V(nt)$Patient_id [V(nt)$Source == "IOKINBlood"]))))%>%
+        #               filter( grepl("HLA-A|HLA-B|HLA-C|HLA-DRB1|HLA-DQA1|HLA-DQB1|HLA-DPA1|HLA-DPB1" , Locus1) | 
+        #                               grepl("HLA-A|HLA-B|HLA-C|HLA-DRB1|HLA-DQA1|HLA-DQB1|HLA-DPA1|HLA-DPB1"  , Locus2)) %>%
+        #               arrange(Locus1 , Locus2 , Patient_id),
+        #       n = 1000)
+        
+        
+        
+        print("####################################################")
+        print("#################################")
+        print("##################")
+        
+}                               
 
 ### ---------------------------------------------------------------------------------------------------------
 ### Condensing the nodes participating in each community into super-nodes:
@@ -559,66 +628,4 @@ Abstract_Network <- set_vertex_attr(Abstract_Network,
                                     value = layout [,2])
 
 
-### saveRDS(Abstract_Network,"IOKIN_BuffyCoat_GLIPHIINetwork_CliqueTrimmed_GLIPHIISuperNodeNetwork.rds" )
-
-                               
-### ---------------------------------------------------------------------------------------------------------
-### Visualizing the specificity community graphs and TRB CDR3 Sequences' LOGOPlots:
-### ---------------------------------------------------------------------------------------------------------
-### Example:
-ID <- Community ID of interest
-
-nt <- igraph::subgraph(
-        network ,
-        which(V(network)$LeidenCommunity == ID ))
-
-
-
-### Zoomed-in community nodes:
-plot.igraph(
-        nt,
-        vertex.size = ifelse(V (nt)$Source == "IOKINBlood"  , 23 , 15) ,
-        vertex.color = ifelse(V (nt)$Source == "IOKINBlood"  , "#000000" , V (nt)$colors ) ,
-        vertex.frame.color = "#000000" ,
-        #vertex.frame.width = ifelse(V (nt)$Source == "INSPIRE" , 16 , 8) ,
-        vertex.frame.width = 0.1 ,
-        vertex.shape = "circle",
-
-        vertex.label = ifelse(V (nt)$Source == "IOKINBlood"  ,
-                              V(nt)$Patient_id ,
-                              ifelse(V(nt)$Source == "HNSCC" ,
-                                     NA ,
-                                     ifelse(V(nt)$Source == "HomoSapiens" ,
-                                            sub(".+__(.+)$", "\\1", V(nt)$name) ,
-                                            V(nt)$Source))),
-        vertex.label.family = "Helvetica" ,
-        vertex.label.color = "#000000" ,
-        vertex.label.cex = 0.4 ,
-        vertex.label.dist = ifelse(V (nt)$Source == "IOKINBlood" ,
-                                   11 , 4),
-        vertex.label.degree = 0 ,
-
-        edge.width = 0.25 ,
-        edge.color = "#BABABA" ,
-        rescale = FALSE ,
-        ###To get all the available layouts: grep("^layout_", ls("package:igraph"), value=TRUE)[-1]
-        layout = norm_coords(layout_with_graphopt(nt),
-                             ymin=-0.98, ymax=0.98,
-                             xmin=-0.98, xmax=0.98) )
-
-
-
-### LOGOSeq:
-
-ggplot() +
-        geom_logo( V(nt)$TcRb ,
-                   method = 'prob' ,
-                   seq_type='aa' ,
-                   font = "akrobat_regular" ,
-                   col_scheme = make_col_scheme(chars = LETTERS,
-                                                cols = rep ("#000000" , length(LETTERS))) ) +
-        theme_minimal() +
-        theme(
-                panel.grid = element_blank() ,
-                axis.text  = element_blank() ,
-                axis.title = element_blank() )
+### saveRDS(Abstract_Network,"11_IOKIN_GLIPHIISuperNodes_PreHLAConvergence.rds" )
