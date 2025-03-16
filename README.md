@@ -10,26 +10,18 @@ Head and Neck Squamous Cell Carcinoma (HNSCC), Recurrent/Metastatic (R/M), Immun
 Input data to generate figure 1B Tile plot. <br>
 
 #### 02_IOKIN_ClinicalData.csv
-Clinical data for IO-KIN patients that were used in: <br>
-Main figures 1B, 2A-C, 3A-C, and 5. <br>
-Supplementary figures 2A-B, 5, and 8B. <br>
+Clinical data for IO-KIN patients. <br>
 
 #### 03_IOKIN_BuffyCoat_TRB-CDR3.csv
 Buffy coat CapTCR-seq processed data for 8 IO-KIN patients that were serially collected at baseline (same or prior day to first ICB dose administration), days 2, 3, 8, 15, 22, and 29 post-infusion; 
 TRB-CDR3 sequences were assembled using MiXCR 3.0.12. <br>
-TRB-CDR3 sequences were used for calculating the diversity indices and also for generating: <br>
-Main figures 4A-L, and 5A. <br>
-Supplementary figures 4A-T, 5, and 8A-B. <br>
+TRB-CDR3 sequences were used for calculating the diversity indices. <br>
 
 #### 04_IOKIN_ctDNALevels.csv
 ctDNA levels provided by Signatera<sup>TM</sup>, Natera.
-ctDNA levels were plotted in: <br>
-Main figure 2A. <br>
 
 #### 05_IOKIN_BuffyCoat_DiversityIndices_DownSampled.csv
 Diversity indices (including Richness, Shannon diversity, and higher-order indeices) representing the clonal structure of the buffy coat TCR repertoires.
-Diversity indices were used for generating: <br>
-Main figures 3A-C. <br>
 
 #### 06_IOKIN_BuffyCoat_ClonalityIndices_DownSampled.csv
 Shannon and Simpson clonality indices of the buffy coat TCR repertoires.
