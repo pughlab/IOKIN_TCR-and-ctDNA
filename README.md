@@ -25,6 +25,16 @@ Diversity indices (including Richness, Shannon diversity, and higher-order indei
 #### 06_IOKIN_BuffyCoat_ClonalityIndices_DownSampled.csv
 Shannon and Simpson clonality indices of the buffy coat TCR repertoires.
 These indices were not reported in the paper. <br>
+
+#### 07_IOKIN_BuffyCoat_GLIPHIIOutput.csv
+#### 08_IOKIN_HLAGenotyping.csv
+#### 09_IOKIN_GLIPHIINetwork_PreHLAConvergence.rds
+#### 13_IOKIN_GLIPHIINetwork_PostHLAConvergence.rds
+#### 10_IOKIN_GLIPHIICommunityFeatures_PreHLAConvergence.csv
+#### 14_IOKIN_GLIPHIICommunityFeatures_PostHLAConvergence.csv
+#### 11_IOKIN_GLIPHIISuperNodes_PreHLAConvergence.rds
+#### 15_IOKIN_GLIPHIISuperNodes_PostHLAConvergence.rds
+#### 12_IOKIN_List-of-Nodes-to-Remove_HLAInconsistent.txt
 ***
 ### Session Info:
 R version 4.4.1 (2024-06-14) Running under: macOS Big Sur 11.7.10 <br>
