@@ -43,8 +43,14 @@ This network is a simplified version of 09_IOKIN_GLIPHIINetwork_PreHLAConvergenc
 
 #### 12_IOKIN_List-of-Nodes-to-Remove_HLAInconsistent.txt
 #### 13_IOKIN_GLIPHIINetwork_PostHLAConvergence.rds 
+HLA-filtered version of 09_IOKIN_GLIPHIINetwork_PreHLAConvergence.rds
+
 #### 14_IOKIN_GLIPHIICommunityFeatures_PostHLAConvergence.csv
+HLA-filtered version of 10_IOKIN_GLIPHIICommunityFeatures_PreHLAConvergence.csv
+
 #### 15_IOKIN_GLIPHIISuperNodes_PostHLAConvergence.rds
+HLA-filtered version of 11_IOKIN_GLIPHIISuperNodes_PreHLAConvergence.rds
+
 ***
 ### Session Info:
 R version 4.4.1 (2024-06-14) Running under: macOS Big Sur 11.7.10 <br>
