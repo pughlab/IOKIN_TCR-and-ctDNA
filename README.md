@@ -29,15 +29,12 @@ These indices were not reported in the paper. <br>
 #### 07_IOKIN_BuffyCoat_GLIPHIIOutput.csv
 #### 08_IOKIN_HLAGenotyping.csv
 #### 09_IOKIN_GLIPHIINetwork_PreHLAConvergence.rds 
-#### and 
-#### 13_IOKIN_GLIPHIINetwork_PostHLAConvergence.rds
 #### 10_IOKIN_GLIPHIICommunityFeatures_PreHLAConvergence.csv 
-#### and 
-#### 14_IOKIN_GLIPHIICommunityFeatures_PostHLAConvergence.csv
 #### 11_IOKIN_GLIPHIISuperNodes_PreHLAConvergence.rds 
-#### and 
-#### 15_IOKIN_GLIPHIISuperNodes_PostHLAConvergence.rds
 #### 12_IOKIN_List-of-Nodes-to-Remove_HLAInconsistent.txt
+#### 13_IOKIN_GLIPHIINetwork_PostHLAConvergence.rds 
+#### 14_IOKIN_GLIPHIICommunityFeatures_PostHLAConvergence.csv
+#### 15_IOKIN_GLIPHIISuperNodes_PostHLAConvergence.rds
 ***
 ### Session Info:
 R version 4.4.1 (2024-06-14) Running under: macOS Big Sur 11.7.10 <br>
