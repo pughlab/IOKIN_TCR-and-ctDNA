@@ -15,7 +15,6 @@ Clinical data for IO-KIN patients. <br>
 #### 03_IOKIN_BuffyCoat_TRB-CDR3.csv
 Buffy coat CapTCR-seq processed data for 8 IO-KIN patients that were serially collected at baseline (same or prior day to first ICB dose administration), days 2, 3, 8, 15, 22, and 29 post-infusion; 
 TRB-CDR3 sequences were assembled using MiXCR 3.0.12. <br>
-TRB-CDR3 sequences were used for calculating the diversity indices. <br>
 
 #### 04_IOKIN_ctDNALevels.csv
 ctDNA levels provided by Signatera<sup>TM</sup>, Natera.
