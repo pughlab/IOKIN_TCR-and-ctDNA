@@ -39,7 +39,13 @@ such as community size and node connectivity determined by clique formation.
 HLA convergence criteria have not been applied.
 
 #### 10_IOKIN_GLIPHIICommunityFeatures_PreHLAConvergence.csv 
+A dataframe summarizing GLIPHII specificity community features prior to applying HLA convergence filtration criteria.
+
 #### 11_IOKIN_GLIPHIISuperNodes_PreHLAConvergence.rds 
+This network is a simplified version of 09_IOKIN_GLIPHIINetwork_PreHLAConvergence.rds, designed for improved visualization and interpretability.  
+Individual TRB-CDR3 nodes that belong to the same GLIPHII-defined specificity community are collapsed into a single supernode.
+Therefore, each supernode represents a unique specificity community, rather than an individual TRB-CDR3 sequence. This supernode representation provides a more manageable and visually accessible overview of the overall landscape of specificity communities.
+
 #### 12_IOKIN_List-of-Nodes-to-Remove_HLAInconsistent.txt
 #### 13_IOKIN_GLIPHIINetwork_PostHLAConvergence.rds 
 #### 14_IOKIN_GLIPHIICommunityFeatures_PostHLAConvergence.csv
